@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import {  CircularProgress, Container, Typography } from "@mui/material";
+import { CircularProgress, Container, Typography } from "@mui/material";
 
 import { useProducts } from "../../services/products/products";
 
@@ -27,9 +27,9 @@ const Catalog = () => {
       {/* list of products */}
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         {!isLoading ? (
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             {products.map((product) => (
-              <Grid xs={6} sm={4}>
+              <Grid xs={6} sm={4} key={product._id}>
                 <ProductCard product={product} />
               </Grid>
             ))}

@@ -1,1 +1,6 @@
-export const routes = { catalog: "/catalog" };
+export const productDetailsBaseUrl = '/productDetails'
+
+export const routes = {
+  catalog: "/catalog",
+  productDetails: `${productDetailsBaseUrl}/:productId`,
+};
