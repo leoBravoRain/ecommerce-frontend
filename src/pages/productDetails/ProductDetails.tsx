@@ -1,13 +1,40 @@
-import { Box, CircularProgress, Container, Typography } from "@mui/material";
-import { useParams } from "react-router-dom";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  CircularProgress,
+  Container,
+  Typography,
+} from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 
 import { useProduct } from "../../services/products/products";
+import { routes } from "../../config/routes";
 
 const ProductDetails = () => {
   let { productId } = useParams();
+  const [itemQuantity, setItemQuantity] = useState(1);
 
   // get product
   const { product, isLoading } = useProduct({ productId });
+
+  let navigate = useNavigate();
+
+  const goToCheckout = () => {
+    // TODO: set item on cart with quantity
+
+    navigate(routes.checkout);
+  };
+
+  const increaseQuantity = () => {
+    // this can be validated with items on inventory of this product
+    setItemQuantity(itemQuantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    setItemQuantity(itemQuantity - 1);
+  };
 
   return (
     <Container>
@@ -41,6 +68,20 @@ const ProductDetails = () => {
           >
             {product?.shortDescription}
           </Typography>
+
+          {/* select quantity */}
+          <ButtonGroup size="large" aria-label="large button group">
+            <Button onClick={decreaseQuantity} disabled={itemQuantity === 1}>
+              -
+            </Button>
+            <Button disabled={true}>{itemQuantity}</Button>
+            <Button onClick={increaseQuantity}>+</Button>
+          </ButtonGroup>
+
+          {/* button to pay */}
+          <Button onClick={goToCheckout} variant="contained">
+            Go to pay
+          </Button>
         </Container>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
