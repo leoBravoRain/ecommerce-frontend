@@ -18,7 +18,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <CardMedia
             component="img"
             height="140"
-            image={product.phothoUrl}
+            image={product.photoUrl}
             alt="green iguana"
           />
           <CardContent>

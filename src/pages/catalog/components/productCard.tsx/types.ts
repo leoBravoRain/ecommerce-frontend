@@ -1,8 +1,5 @@
-export type ProductType = {
-  name: string;
-  phothoUrl: string;
-  shortDescription: string;
-};
+import { ProductType } from "../../../../services/products/types";
+
 export type ProductCardProps = {
   product: ProductType;
 };
