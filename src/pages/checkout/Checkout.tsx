@@ -1,9 +1,14 @@
 import { Button, Typography } from "@mui/material";
 
-import ProductsTable from "./components/ProductsTable";
+import { useAppSelector } from "../../redux/hooks.types";
+
+import ProductsTable from "./components/productsTable/ProductsTable";
 import ClientForm from "./components/ClientForm";
 
 const Checkout = () => {
+  // get items from cart
+  const cartItems = useAppSelector((state) => state.cart.items);
+
   return (
     <>
       {/* company title */}
@@ -16,7 +21,7 @@ const Checkout = () => {
       </Typography>
 
       {/* list of products */}
-      <ProductsTable />
+      <ProductsTable items={cartItems} />
 
       {/* client form */}
       <ClientForm />

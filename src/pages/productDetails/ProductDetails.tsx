@@ -11,10 +11,15 @@ import { useState } from "react";
 
 import { useProduct } from "../../services/products/products";
 import { routes } from "../../config/routes";
+import { addItem } from "../../redux/reducers/cart/cartSlice";
+import { CartItemType } from "../../redux/reducers/cart/types";
+import { useAppDispatch } from "../../redux/hooks.types";
 
 const ProductDetails = () => {
   let { productId } = useParams();
   const [itemQuantity, setItemQuantity] = useState(1);
+
+  const dispatch = useAppDispatch();
 
   // get product
   const { product, isLoading } = useProduct({ productId });
@@ -22,8 +27,15 @@ const ProductDetails = () => {
   let navigate = useNavigate();
 
   const goToCheckout = () => {
-    // TODO: set item on cart with quantity
+    // set item on cart with quantity
+    dispatch(
+      addItem({
+        ...product,
+        quantity: itemQuantity,
+      } as CartItemType)
+    );
 
+    // go to checkout
     navigate(routes.checkout);
   };
 

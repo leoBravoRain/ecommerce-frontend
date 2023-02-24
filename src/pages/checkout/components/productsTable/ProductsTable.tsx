@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   Paper,
   Table,
@@ -8,26 +9,9 @@ import {
   TableRow,
 } from "@mui/material";
 
-const ProductsTable = () => {
-  const cartItems: any[] = [
-    {
-      _id: "1",
-      name: "asd",
-      photoUrl: "",
-      shortDescription: "",
-      price: 10,
-      quantity: 2,
-    },
-    {
-      _id: "2",
-      name: "asd",
-      photoUrl: "",
-      shortDescription: "",
-      price: 10,
-      quantity: 2,
-    },
-  ];
+import { ProductsTableProps } from "./types";
 
+const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 350 }} aria-label="simple table">
@@ -43,7 +27,7 @@ const ProductsTable = () => {
 
         {/* rows */}
         <TableBody>
-          {cartItems.map((item) => (
+          {items.map((item) => (
             <TableRow
               key={item._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
