@@ -1,3 +1,4 @@
+import { ClientType } from "../../../pages/checkout/types";
 import { ProductType } from "../../../services/products/types";
 
 export type CartItemType = ProductType & {
@@ -6,4 +7,5 @@ export type CartItemType = ProductType & {
 
 export type CartStateType = {
   items: CartItemType[];
+  client: ClientType | undefined;
 };
