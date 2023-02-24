@@ -1,10 +1,14 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import { PaymentFormType } from "./types";
 import { initialState } from "./constants";
+import { routes } from "../../config/routes";
 
 const PaymentMethod = () => {
+  const navigate = useNavigate();
+
   // client form
   const { control, handleSubmit } = useForm<PaymentFormType>({
     defaultValues: initialState,
@@ -14,8 +18,9 @@ const PaymentMethod = () => {
   const pay = () => {
     handleSubmit((data) => {
       // As this is just a demo, in real app maybe this can redirect to a payment system using the data
-      
+      // TODO: do request on db to create sale order
       //   go to payment confirmation
+      navigate(routes.paymentConfirmation);
     })();
   };
 
