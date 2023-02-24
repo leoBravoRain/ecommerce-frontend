@@ -5,6 +5,7 @@ import { routes } from "../config/routes";
 import Catalog from "./catalog/Catalog";
 import ProductDetails from "./productDetails/ProductDetails";
 import Checkout from "./checkout/Checkout";
+import PaymentMethod from "./paymentMethod/PaymentMethod";
 import NotFound from "./notFound/notFound";
 
 const Pages = () => (
@@ -13,6 +14,7 @@ const Pages = () => (
       <Route path={routes.catalog} element={<Catalog />} />
       <Route path={routes.productDetails} element={<ProductDetails />} />
       <Route path={routes.checkout} element={<Checkout />} />
+      <Route path={routes.paymentMethods} element={<PaymentMethod />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </Router>

@@ -1,35 +1,21 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../../redux/hooks.types";
-
-import { ClientFormType } from "./types";
+import { PaymentFormType } from "./types";
 import { initialState } from "./constants";
-import { addClient } from "../../redux/reducers/cart/cartSlice";
 
-import ProductsTable from "./productsTable/ProductsTable";
-import { routes } from "../../config/routes";
-
-const Checkout = () => {
-  // get items from cart
-  const cartItems = useAppSelector((state) => state.cart.items);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
+const PaymentMethod = () => {
   // client form
-  const { control, handleSubmit } = useForm<ClientFormType>({
+  const { control, handleSubmit } = useForm<PaymentFormType>({
     defaultValues: initialState,
     mode: "onChange",
   });
 
-  const goToPayment = () => {
+  const pay = () => {
     handleSubmit((data) => {
-      // add client data to cart store
-      dispatch(addClient(data));
-
-      // go to payment page
-      navigate(routes.paymentMethods);
+      // As this is just a demo, in real app maybe this can redirect to a payment system using the data
+      
+      //   go to payment confirmation
     })();
   };
 
@@ -41,17 +27,13 @@ const Checkout = () => {
         gutterBottom
         sx={{ marginY: "20px", marginLeft: "15px" }}
       >
-        Checkout
+        PaymentMethod
       </Typography>
 
-      {/* list of products */}
-      <ProductsTable items={cartItems} />
-
-      {/* client form */}
       <Container>
-        {/* first name */}
+        {/* name on card */}
         <Controller
-          name="firstName"
+          name="nameOnCard"
           rules={{ required: { message: "It is required", value: true } }}
           control={control}
           render={({
@@ -60,7 +42,7 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
-                label="First name"
+                label="Name on card"
                 variant="outlined"
                 value={value}
                 onChange={onChange}
@@ -72,9 +54,9 @@ const Checkout = () => {
           )}
         />
 
-        {/* last name */}
+        {/* card number */}
         <Controller
-          name="lastName"
+          name="cardNumber"
           rules={{ required: { message: "It is required", value: true } }}
           control={control}
           render={({
@@ -83,7 +65,7 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
-                label="Last name"
+                label="Card number"
                 variant="outlined"
                 value={value}
                 onChange={onChange}
@@ -95,9 +77,9 @@ const Checkout = () => {
           )}
         />
 
-        {/* address */}
+        {/* expiration month */}
         <Controller
-          name="address"
+          name="expMonth"
           rules={{ required: { message: "It is required", value: true } }}
           control={control}
           render={({
@@ -106,7 +88,7 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
-                label="Address"
+                label="Exp month"
                 variant="outlined"
                 value={value}
                 onChange={onChange}
@@ -118,9 +100,9 @@ const Checkout = () => {
           )}
         />
 
-        {/* city */}
+        {/* exp day */}
         <Controller
-          name="city"
+          name="expDay"
           rules={{ required: { message: "It is required", value: true } }}
           control={control}
           render={({
@@ -129,7 +111,7 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
-                label="City"
+                label="Exp day"
                 variant="outlined"
                 value={value}
                 onChange={onChange}
@@ -141,9 +123,9 @@ const Checkout = () => {
           )}
         />
 
-        {/* state */}
+        {/* cvv */}
         <Controller
-          name="state"
+          name="cvv"
           rules={{ required: { message: "It is required", value: true } }}
           control={control}
           render={({
@@ -152,53 +134,7 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
-                label="State"
-                variant="outlined"
-                value={value}
-                onChange={onChange}
-              />
-              <Typography variant="body2" color="error.main">
-                {errors[name]?.message}
-              </Typography>
-            </>
-          )}
-        />
-
-        {/* zip code */}
-        <Controller
-          name="zipCode"
-          rules={{ required: { message: "It is required", value: true } }}
-          control={control}
-          render={({
-            field: { value, onChange, name },
-            formState: { errors },
-          }) => (
-            <>
-              <TextField
-                label="Zip code"
-                variant="outlined"
-                value={value}
-                onChange={onChange}
-              />
-              <Typography variant="body2" color="error.main">
-                {errors[name]?.message}
-              </Typography>
-            </>
-          )}
-        />
-
-        {/* Phone number */}
-        <Controller
-          name="phoneNumber"
-          rules={{ required: { message: "It is required", value: true } }}
-          control={control}
-          render={({
-            field: { value, onChange, name },
-            formState: { errors },
-          }) => (
-            <>
-              <TextField
-                label="Phone number"
+                label="cvv"
                 variant="outlined"
                 value={value}
                 onChange={onChange}
@@ -212,11 +148,11 @@ const Checkout = () => {
       </Container>
 
       {/* button to pay */}
-      <Button variant="contained" onClick={goToPayment}>
+      <Button variant="contained" onClick={pay}>
         Pay
       </Button>
     </>
   );
 };
 
-export default Checkout;
+export default PaymentMethod;
