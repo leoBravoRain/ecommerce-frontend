@@ -8,9 +8,11 @@ import Checkout from "./checkout/Checkout";
 import PaymentMethod from "./paymentMethod/PaymentMethod";
 import PaymentConfirmation from "./paymentConfirmation/PaymentConfirmation";
 import NotFound from "./notFound/notFound";
+import NavBar from "../layout/NavBar";
 
 const Pages = () => (
   <Router>
+    <NavBar />
     <Routes>
       <Route path={routes.catalog} element={<Catalog />} />
       <Route path={routes.productDetails} element={<ProductDetails />} />

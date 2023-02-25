@@ -1,9 +1,9 @@
 export const productDetailsBaseUrl = "/productDetails";
 
 export const routes = {
-  catalog: "/catalog",
+  catalog: "/",
   productDetails: `${productDetailsBaseUrl}/:productId`,
   checkout: "/checkout",
-  paymentMethods: '/payment',
-  paymentConfirmation: '/paymentConfirmation'
+  paymentMethods: "/payment",
+  paymentConfirmation: "/paymentConfirmation",
 };
