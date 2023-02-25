@@ -21,11 +21,12 @@ const PaymentConfirmation = () => {
   return (
     <Container>
       <Alert severity="success" sx={{ marginTop: "20px" }}>
-        Your sale was successfull!
+        Your purchase was successful!
       </Alert>
       <Box marginY={3}>
         <Typography>
-          We have sent you the order and the confirmation to your email
+          We have sent you the order and confirmation to your email. Thanks fot
+          buying with us!
         </Typography>
       </Box>
       <Button onClick={goToHome} variant="outlined">

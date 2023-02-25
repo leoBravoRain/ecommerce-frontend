@@ -246,7 +246,7 @@ const Checkout = () => {
       {/* button to pay */}
       <Button variant="contained" onClick={goToPayment}>
         <AttachMoneyIcon />
-        Pay
+        Go to payment method
       </Button>
     </Container>
   );
