@@ -37,11 +37,7 @@ const Checkout = () => {
   return (
     <Container maxWidth="sm">
       {/* company title */}
-      <Typography
-        variant="h5"
-        gutterBottom
-        sx={{ marginY: "20px", marginLeft: "15px" }}
-      >
+      <Typography variant="h5" gutterBottom>
         Checkout
       </Typography>
 

@@ -1,4 +1,6 @@
 import {
+  Alert,
+  Box,
   Button,
   CircularProgress,
   Container,
@@ -7,6 +9,7 @@ import {
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { PaymentFormType } from "./types";
 import { initialState } from "./constants";
@@ -67,17 +70,13 @@ const PaymentMethod = () => {
   return (
     <>
       {!isLoading ? (
-        <Container>
-          <Typography
-            variant="h5"
-            gutterBottom
-            sx={{ marginY: "20px", marginLeft: "15px" }}
-          >
-            PaymentMethod
+        <Container maxWidth="sm">
+          <Typography variant="h5" gutterBottom>
+            Payment information
           </Typography>
 
           {/* payment method form */}
-          <Container>
+          <Box>
             {/* name on card */}
             <Controller
               name="nameOnCard"
@@ -89,6 +88,8 @@ const PaymentMethod = () => {
               }) => (
                 <>
                   <TextField
+                    fullWidth
+                    margin="normal"
                     label="Name on card"
                     variant="outlined"
                     value={value}
@@ -113,6 +114,8 @@ const PaymentMethod = () => {
                 <>
                   <TextField
                     label="Card number"
+                    fullWidth
+                    margin="normal"
                     variant="outlined"
                     value={value}
                     onChange={onChange}
@@ -136,6 +139,8 @@ const PaymentMethod = () => {
                 <>
                   <TextField
                     label="Exp month"
+                    fullWidth
+                    margin="normal"
                     variant="outlined"
                     value={value}
                     onChange={onChange}
@@ -159,6 +164,8 @@ const PaymentMethod = () => {
                 <>
                   <TextField
                     label="Exp day"
+                    fullWidth
+                    margin="normal"
                     variant="outlined"
                     value={value}
                     onChange={onChange}
@@ -182,6 +189,8 @@ const PaymentMethod = () => {
                 <>
                   <TextField
                     label="cvv"
+                    fullWidth
+                    margin="normal"
                     variant="outlined"
                     value={value}
                     onChange={onChange}
@@ -192,18 +201,19 @@ const PaymentMethod = () => {
                 </>
               )}
             />
-          </Container>
+          </Box>
 
           {/* total amount to pay */}
-          <Typography variant="body1">
+          <Alert severity="info" sx={{ margin: "10px 0px 20px 0px" }}>
             Total to pay:{" "}
             {priceFormatter.format(
               products.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
             )}
-          </Typography>
+          </Alert>
 
           {/* button to pay */}
           <Button variant="contained" onClick={pay}>
+            <AttachMoneyIcon />
             Pay
           </Button>
 
