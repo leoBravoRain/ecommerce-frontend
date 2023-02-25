@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, height: 250 }} onClick={goToProductDetails}>
+    <Card sx={{ maxWidth: "250px" }} onClick={goToProductDetails}>
       <CardActionArea>
         <CardMedia
           component="img"

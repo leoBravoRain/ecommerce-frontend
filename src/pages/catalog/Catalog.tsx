@@ -13,9 +13,16 @@ const Catalog = () => {
       {/* list of products */}
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         {!isLoading ? (
-          <Grid container rowSpacing={3} columnSpacing={2}>
+          <Grid
+            container
+            rowSpacing={3}
+            columnSpacing={2}
+            sx={{
+              width: "100%",
+            }}
+          >
             {products.map((product) => (
-              <Grid xs={6} sm={3} key={product._id}>
+              <Grid xs={6} sm={4} key={product._id}>
                 <ProductCard product={product} />
               </Grid>
             ))}
