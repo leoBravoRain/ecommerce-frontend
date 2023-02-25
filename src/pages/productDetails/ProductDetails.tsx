@@ -153,7 +153,13 @@ const ProductDetails = () => {
               </Container>
 
               {/* actions buttons */}
-              <Box sx={{ display: "flex", flexDirection: "row" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
                 {/* keep searching products */}
                 <Button
                   onClick={goToCatalog}
