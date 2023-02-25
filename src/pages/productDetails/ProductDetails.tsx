@@ -9,6 +9,9 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Grid from "@mui/material/Unstable_Grid2";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { useProduct } from "../../services/products/products";
 import { routes } from "../../config/routes";
@@ -89,57 +92,86 @@ const ProductDetails = () => {
     <Container>
       {!isLoading ? (
         <Container>
-          {/* product is already in cart */}
+          {/* product is already in cart alert */}
           {productIsOnCart.isIn && (
-            <Alert severity="success">Product is already in cart</Alert>
+            <Box marginBottom={2}>
+              <Alert severity="success">Product is already in cart</Alert>
+            </Box>
           )}
-          {/* name */}
-          <Typography
-            variant="h5"
-            gutterBottom
-            sx={{ marginY: "20px", marginLeft: "15px" }}
-          >
-            {product?.name}
-          </Typography>
+          <Grid container>
+            <Grid
+              xs={12}
+              sm={6}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              {/* photo */}
+              <img
+                src={product?.photoUrl}
+                alt={product?.name}
+                loading="lazy"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  maxHeight: "450px",
+                }}
+              />
+            </Grid>
+            <Grid xs={12} sm={6} style={{ marginTop: "20px" }}>
+              {/* name */}
+              <Typography variant="h5" gutterBottom>
+                {product?.name}
+              </Typography>
 
-          {/* photo */}
-          <img
-            src={product?.photoUrl}
-            alt={product?.name}
-            loading="lazy"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
+              {/* description */}
+              <Typography
+                variant="body2"
+                gutterBottom
+                color="text.secondary"
+                sx={{ marginTop: "10px" }}
+              >
+                {product?.shortDescription}
+              </Typography>
 
-          {/* description */}
-          <Typography
-            variant="body1"
-            gutterBottom
-            sx={{ marginY: "20px", marginLeft: "15px" }}
-          >
-            {product?.shortDescription}
-          </Typography>
+              {/* select quantity */}
+              <Container
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                <ButtonGroup size="large" aria-label="large button group">
+                  <Button
+                    onClick={decreaseQuantity}
+                    disabled={itemQuantity === 1}
+                  >
+                    -
+                  </Button>
+                  <Button disabled={true}>{itemQuantity}</Button>
+                  <Button onClick={increaseQuantity}>+</Button>
+                </ButtonGroup>
+              </Container>
 
-          {/* select quantity */}
-          <ButtonGroup size="large" aria-label="large button group">
-            <Button onClick={decreaseQuantity} disabled={itemQuantity === 1}>
-              -
-            </Button>
-            <Button disabled={true}>{itemQuantity}</Button>
-            <Button onClick={increaseQuantity}>+</Button>
-          </ButtonGroup>
+              {/* actions buttons */}
+              <Box sx={{ display: "flex", flexDirection: "row" }}>
+                {/* keep searching products */}
+                <Button
+                  onClick={goToCatalog}
+                  variant="outlined"
+                  sx={{ marginRight: "10px" }}
+                >
+                  <ShoppingCartIcon />
+                  Add to cart
+                </Button>
 
-          {/* keep searching products */}
-          <Button onClick={goToCatalog} variant="outlined">
-            Add and see other products
-          </Button>
-
-          {/* button to go to checkout */}
-          <Button onClick={goToCheckout} variant="contained">
-            Go to pay
-          </Button>
+                {/* button to go to checkout */}
+                <Button onClick={goToCheckout} variant="contained">
+                  <AttachMoneyIcon />
+                  Buy now
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       ) : (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
