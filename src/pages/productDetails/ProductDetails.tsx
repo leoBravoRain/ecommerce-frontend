@@ -19,6 +19,7 @@ import { setItems } from "../../redux/reducers/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.types";
 import { getNewItems } from "./utils";
 import { CartItemType } from "../../redux/reducers/cart/types";
+import { priceFormatter } from "../../utils/utils";
 
 const ProductDetails = () => {
   let { productId } = useParams();
@@ -90,7 +91,7 @@ const ProductDetails = () => {
 
   return (
     <Container>
-      {!isLoading ? (
+      {!isLoading && !!product ? (
         <Container>
           {/* product is already in cart alert */}
           {productIsOnCart.isIn && (
@@ -106,8 +107,8 @@ const ProductDetails = () => {
             >
               {/* photo */}
               <img
-                src={product?.photoUrl}
-                alt={product?.name}
+                src={product.photoUrl}
+                alt={product.name}
                 loading="lazy"
                 style={{
                   maxWidth: "100%",
@@ -119,7 +120,7 @@ const ProductDetails = () => {
             <Grid xs={12} sm={6} style={{ marginTop: "20px" }}>
               {/* name */}
               <Typography variant="h5" gutterBottom>
-                {product?.name}
+                {product.name}
               </Typography>
 
               {/* description */}
@@ -129,8 +130,33 @@ const ProductDetails = () => {
                 color="text.secondary"
                 sx={{ marginTop: "10px" }}
               >
-                {product?.shortDescription}
+                {product.shortDescription}
               </Typography>
+
+              {/* unit price */}
+              <Typography
+                variant="caption"
+                gutterBottom
+                color="text.secondary"
+                sx={{ marginTop: "10px" }}
+              >
+                Unit price: {priceFormatter.format(product.price)}
+              </Typography>
+
+              {/* total price */}
+              <Alert
+                severity="info"
+                sx={{ marginY: "10px", width: "fit-content" }}
+              >
+                <Typography
+                  variant="caption"
+                  gutterBottom
+                  color="text.secondary"
+                  sx={{ marginTop: "10px" }}
+                >
+                  Total: {priceFormatter.format(product.price * itemQuantity)}
+                </Typography>
+              </Alert>
 
               {/* select quantity */}
               <Container
