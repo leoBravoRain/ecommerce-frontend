@@ -11,8 +11,10 @@ import { useState } from "react";
 
 import { useProduct } from "../../services/products/products";
 import { routes } from "../../config/routes";
-import {  setItems } from "../../redux/reducers/cart/cartSlice";
+import { setItems } from "../../redux/reducers/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.types";
+import { getNewItems } from "./utils";
+import { CartItemType } from "../../redux/reducers/cart/types";
 
 const ProductDetails = () => {
   let { productId } = useParams();
@@ -27,35 +29,13 @@ const ProductDetails = () => {
   let navigate = useNavigate();
 
   const goToCheckout = () => {
-    let newItems = items;
-
-    if (!!product) {
-      // if items is empty
-      if (newItems.length === 0) {
-        newItems = [
-          {
-            ...product,
-            quantity: itemQuantity,
-          },
-        ];
-      }
-      // if items has any element
-      else {
-        newItems = newItems.map((item) => {
-          // if element is already in array
-          if (item._id === productId) {
-            return {
-              ...item,
-              quantity: item.quantity + itemQuantity,
-            };
-          }
-          // if element is not in the array
-          else {
-            return item;
-          }
-        });
-      }
-    }
+    // get new items array
+    const newItems = getNewItems(
+      product,
+      items,
+      itemQuantity,
+      productId
+    ) as CartItemType[];
 
     // set item on cart with quantity
     dispatch(setItems(newItems));
