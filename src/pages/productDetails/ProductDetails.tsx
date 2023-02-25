@@ -28,6 +28,10 @@ const ProductDetails = () => {
 
   let navigate = useNavigate();
 
+  const goToCatalog = () => {
+    navigate(routes.catalog);
+  };
+  
   const goToCheckout = () => {
     // get new items array
     const newItems = getNewItems(
@@ -95,7 +99,12 @@ const ProductDetails = () => {
             <Button onClick={increaseQuantity}>+</Button>
           </ButtonGroup>
 
-          {/* button to pay */}
+          {/* keep searching products */}
+          <Button onClick={goToCatalog} variant="outlined">
+            See other products
+          </Button>
+
+          {/* button to go to checkout */}
           <Button onClick={goToCheckout} variant="contained">
             Go to pay
           </Button>
