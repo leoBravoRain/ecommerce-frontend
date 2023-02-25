@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ProductCardProps } from "./types";
 import { productDetailsBaseUrl } from "../../../../config/routes";
+import { priceFormatter } from "../../../../utils/utils";
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   let navigate = useNavigate();
@@ -19,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={goToProductDetails}>
+    <Card sx={{ maxWidth: 345, height: 250 }} onClick={goToProductDetails}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -33,6 +34,9 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {product.shortDescription}
+          </Typography>
+          <Typography gutterBottom variant="subtitle1" component="div">
+            {priceFormatter.format(product.price)}
           </Typography>
         </CardContent>
       </CardActionArea>

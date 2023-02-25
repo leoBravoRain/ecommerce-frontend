@@ -14,6 +14,7 @@ import { routes } from "../../config/routes";
 import { useCreateSale } from "../../services/sales/sales";
 import { useAppSelector } from "../../redux/hooks.types";
 import { ProductItemType } from "../../services/sales/types";
+import { priceFormatter } from "../../utils/utils";
 
 const PaymentMethod = () => {
   const navigate = useNavigate();
@@ -196,7 +197,9 @@ const PaymentMethod = () => {
           {/* total amount to pay */}
           <Typography variant="body1">
             Total to pay:{" "}
-            {products.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)}
+            {priceFormatter.format(
+              products.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
+            )}
           </Typography>
 
           {/* button to pay */}

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 
 import { ProductsTableProps } from "./types";
+import { priceFormatter } from "../../../utils/utils";
 
 const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
   return (
@@ -35,9 +36,13 @@ const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
               <TableCell component="th" scope="row">
                 {item.name}
               </TableCell>
-              <TableCell align="right">{item.price}</TableCell>
+              <TableCell align="right">
+                {priceFormatter.format(item.price)}
+              </TableCell>
               <TableCell align="right">{item.quantity}</TableCell>
-              <TableCell align="right">{item.price * item.quantity}</TableCell>
+              <TableCell align="right">
+                {priceFormatter.format(item.price * item.quantity)}
+              </TableCell>
             </TableRow>
           ))}
 
@@ -52,7 +57,9 @@ const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
             <TableCell align="right"></TableCell>
             <TableCell align="right"></TableCell>
             <TableCell align="right">
-              {items.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)}
+              {priceFormatter.format(
+                items.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
+              )}
             </TableCell>
           </TableRow>
         </TableBody>
