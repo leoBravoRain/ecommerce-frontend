@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import { CircularProgress, Container } from "@mui/material";
+import { CircularProgress, Container, Typography } from "@mui/material";
 
 import { useProducts } from "../../services/products/products";
 
@@ -9,7 +9,10 @@ const Catalog = () => {
   const { products, isLoading } = useProducts();
 
   return (
-    <>
+    <Container>
+      <Typography variant="h6" marginBottom={1}>
+        Check our products!
+      </Typography>
       {/* list of products */}
       <Container sx={{ display: "flex", justifyContent: "center" }}>
         {!isLoading ? (
@@ -31,7 +34,7 @@ const Catalog = () => {
           <CircularProgress size={50} />
         )}
       </Container>
-    </>
+    </Container>
   );
 };
 
