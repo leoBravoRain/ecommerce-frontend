@@ -1,6 +1,7 @@
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.types";
 
@@ -34,7 +35,7 @@ const Checkout = () => {
   };
 
   return (
-    <>
+    <Container maxWidth="sm">
       {/* company title */}
       <Typography
         variant="h5"
@@ -45,10 +46,31 @@ const Checkout = () => {
       </Typography>
 
       {/* list of products */}
-      <ProductsTable items={cartItems} />
+      <Box marginBottom={5}>
+        {/* title */}
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          sx={{ marginY: "20px", marginLeft: "15px" }}
+        >
+          Your products
+        </Typography>
+
+        {/* products */}
+        <ProductsTable items={cartItems} />
+      </Box>
 
       {/* client form */}
-      <Container>
+      <Box>
+        {/* title */}
+        <Typography
+          variant="subtitle1"
+          gutterBottom
+          sx={{ marginY: "20px", marginLeft: "15px" }}
+        >
+          Your information
+        </Typography>
+
         {/* first name */}
         <Controller
           name="firstName"
@@ -60,6 +82,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="First name"
                 variant="outlined"
                 value={value}
@@ -83,6 +107,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="Last name"
                 variant="outlined"
                 value={value}
@@ -106,6 +132,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="Address"
                 variant="outlined"
                 value={value}
@@ -129,6 +157,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="City"
                 variant="outlined"
                 value={value}
@@ -152,6 +182,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="State"
                 variant="outlined"
                 value={value}
@@ -175,6 +207,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="Zip code"
                 variant="outlined"
                 value={value}
@@ -198,6 +232,8 @@ const Checkout = () => {
           }) => (
             <>
               <TextField
+                fullWidth
+                margin="normal"
                 label="Phone number"
                 variant="outlined"
                 value={value}
@@ -209,13 +245,14 @@ const Checkout = () => {
             </>
           )}
         />
-      </Container>
+      </Box>
 
       {/* button to pay */}
       <Button variant="contained" onClick={goToPayment}>
+        <AttachMoneyIcon />
         Pay
       </Button>
-    </>
+    </Container>
   );
 };
 

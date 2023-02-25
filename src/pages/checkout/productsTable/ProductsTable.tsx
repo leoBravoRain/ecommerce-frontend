@@ -19,9 +19,9 @@ const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
         {/* header */}
         <TableHead>
           <TableRow>
-            <TableCell>Producto</TableCell>
-            <TableCell align="right">Precio unitario</TableCell>
-            <TableCell align="right">Cantidad</TableCell>
+            <TableCell>Product</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Quantity</TableCell>
             <TableCell align="right">Total</TableCell>
           </TableRow>
         </TableHead>
