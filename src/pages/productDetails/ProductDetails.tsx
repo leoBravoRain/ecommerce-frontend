@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   ButtonGroup,
@@ -7,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useProduct } from "../../services/products/products";
 import { routes } from "../../config/routes";
@@ -19,6 +20,10 @@ import { CartItemType } from "../../redux/reducers/cart/types";
 const ProductDetails = () => {
   let { productId } = useParams();
   const [itemQuantity, setItemQuantity] = useState(1);
+  const [productIsOnCart, setProductIsOnCart] = useState({
+    id: 0,
+    isIn: false,
+  });
 
   const dispatch = useAppDispatch();
   const items = useAppSelector((state) => state.cart.items);
@@ -28,21 +33,44 @@ const ProductDetails = () => {
 
   let navigate = useNavigate();
 
-  const goToCatalog = () => {
-    navigate(routes.catalog);
-  };
-  
-  const goToCheckout = () => {
+  useEffect(() => {
+    // check if product is already in cart
+    items.forEach((item, idx) => {
+      // if product is already in cart, update quantity
+      if (item._id === product?._id) {
+        setItemQuantity(item.quantity);
+        setProductIsOnCart({
+          id: idx,
+          isIn: true,
+        });
+      }
+    });
+  }, [items, product?._id]);
+
+  const addItemToCart = () => {
     // get new items array
     const newItems = getNewItems(
       product,
       items,
       itemQuantity,
-      productId
+      productIsOnCart
     ) as CartItemType[];
 
     // set item on cart with quantity
     dispatch(setItems(newItems));
+  };
+
+  const goToCatalog = () => {
+    // add item to cart
+    addItemToCart();
+
+    // go to catalog
+    navigate(routes.catalog);
+  };
+
+  const goToCheckout = () => {
+    // add item to cart
+    addItemToCart();
 
     // go to checkout
     navigate(routes.checkout);
@@ -61,6 +89,10 @@ const ProductDetails = () => {
     <Container>
       {!isLoading ? (
         <Container>
+          {/* product is already in cart */}
+          {productIsOnCart.isIn && (
+            <Alert severity="success">Product is already in cart</Alert>
+          )}
           {/* name */}
           <Typography
             variant="h5"
@@ -101,7 +133,7 @@ const ProductDetails = () => {
 
           {/* keep searching products */}
           <Button onClick={goToCatalog} variant="outlined">
-            See other products
+            Add and see other products
           </Button>
 
           {/* button to go to checkout */}

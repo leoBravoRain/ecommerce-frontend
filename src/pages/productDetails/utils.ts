@@ -6,10 +6,13 @@ export const getNewItems = (
   product: ProductType | undefined,
   items: CartItemType[],
   itemQuantity: number,
-  productId: string | undefined
+  productIsOnCart: {
+    id: number;
+    isIn: boolean;
+  }
 ) => {
   if (!!product) {
-    let newItems = items;
+    let newItems = [...items];
 
     // if items is empty
     if (newItems.length === 0) {
@@ -23,30 +26,17 @@ export const getNewItems = (
 
     // if items has any element
     else {
-      // flag to check if element already exists
-      let elementExists = false;
-
-      // check if element exists in array
-      newItems = newItems.map((item) => {
-        // if element is already in array
-        if (item._id === productId) {
-          elementExists = true;
-          // return element increasing quantity
-          return {
-            ...item,
-            quantity: item.quantity + itemQuantity,
-          };
-        }
-        return item;
-      });
-
-      // if element is not in array
-      if (!elementExists)
-        //   add element into array
+      if (productIsOnCart.isIn) {
+        newItems[productIsOnCart.id] = {
+          ...newItems[productIsOnCart.id],
+          quantity: itemQuantity,
+        };
+      } else {
         newItems.push({
           ...product,
           quantity: itemQuantity,
         });
+      }
     }
 
     // return array
