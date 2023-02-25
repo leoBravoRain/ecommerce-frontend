@@ -74,6 +74,8 @@ const PaymentMethod = () => {
           >
             PaymentMethod
           </Typography>
+
+          {/* payment method form */}
           <Container>
             {/* name on card */}
             <Controller
@@ -190,15 +192,23 @@ const PaymentMethod = () => {
               )}
             />
           </Container>
+
+          {/* total amount to pay */}
+          <Typography variant="body1">
+            Total to pay:{" "}
+            {products.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)}
+          </Typography>
+
+          {/* button to pay */}
+          <Button variant="contained" onClick={pay}>
+            Pay
+          </Button>
+
+          {/*  */}
         </Container>
       ) : (
         <CircularProgress size={50} />
       )}
-
-      {/* button to pay */}
-      <Button variant="contained" onClick={pay}>
-        Pay
-      </Button>
     </>
   );
 };

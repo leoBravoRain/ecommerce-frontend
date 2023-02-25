@@ -40,6 +40,21 @@ const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
               <TableCell align="right">{item.price * item.quantity}</TableCell>
             </TableRow>
           ))}
+
+          {/* total price */}
+          <TableRow
+            key="price"
+            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
+            <TableCell component="th" scope="row">
+              Total
+            </TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right"></TableCell>
+            <TableCell align="right">
+              {items.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
