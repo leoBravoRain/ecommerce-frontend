@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+
+import queryClient from "./config/queryClient";
+import { store } from "./redux/store";
+
+import Pages from "./pages/Pages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <Pages />
+      </QueryClientProvider>
+    </Provider>
   );
 }
 
