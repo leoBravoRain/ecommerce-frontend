@@ -53,7 +53,7 @@ const PaymentMethod = () => {
         // format products to just send required information
         const productsFormatted: ProductItemType[] = products.map(
           (product) => ({
-            product: product._id,
+            productId: product.id,
             quantity: product.quantity,
           })
         );

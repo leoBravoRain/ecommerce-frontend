@@ -16,7 +16,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   let navigate = useNavigate();
 
   const goToProductDetails = () => {
-    navigate(`${productDetailsBaseUrl}/${product._id}`);
+    navigate(`${productDetailsBaseUrl}/${product.id}`);
   };
 
   return (
