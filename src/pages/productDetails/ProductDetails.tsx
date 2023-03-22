@@ -41,7 +41,7 @@ const ProductDetails = () => {
     // check if product is already in cart
     items.forEach((item, idx) => {
       // if product is already in cart, update quantity
-      if (item._id === product?._id) {
+      if (item.id === product?.id) {
         setItemQuantity(item.quantity);
         setProductIsOnCart({
           id: idx,
@@ -49,7 +49,7 @@ const ProductDetails = () => {
         });
       }
     });
-  }, [items, product?._id]);
+  }, [items, product?.id]);
 
   const addItemToCart = () => {
     // get new items array

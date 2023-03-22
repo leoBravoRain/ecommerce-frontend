@@ -30,7 +30,7 @@ const ProductsTable: FC<ProductsTableProps> = ({ items }) => {
         <TableBody>
           {items.map((item) => (
             <TableRow
-              key={item._id}
+              key={item.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">

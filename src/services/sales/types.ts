@@ -4,7 +4,7 @@ import { UseMutationOptions } from "react-query";
 import { ClientType } from "../../pages/checkout/types";
 
 export type ProductItemType = {
-  product: string;
+  productId: string;
   quantity: number;
 };
 

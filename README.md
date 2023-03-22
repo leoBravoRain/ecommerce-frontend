@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# Ecommerce frontend demo app 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a demo projet I developed as part of my personal portfolio.
+This is an ecommerce demo containing:
 
-## Available Scripts
+1. Catalog page: displaying a list of products on sale
+2. Product detail page: displaying the information about that specific project. It also allows you to select how many products you want.
+3. Cart checkout page: displaying the total products you have in your cart. It also has a form for client information.
+4. Payment method page: with a form about the payment method.
+5. Purchase confirmation page: displaying information about payment confirmation
 
-In the project directory, you can run:
+As this is a demo app, it does not contain all the expected functionallities an ecommerce app should have.
 
-### `npm start`
+## Full-stack project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is part of a full-stack project, so this frontend app is connected to a backend app developed as part of personal portfolio too. So if you want to run this app locally, you should run the backend at the same time.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> [Backend project](https://github.com/leoBravoRain/ecommerce-backend)
 
-### `npm test`
+## Requisites 🔌
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node Versión**: v18.14.0
+- **NPM Versión**: 9.3.1
 
-### `npm run build`
+_Remember_: This app is connected to other backend app, so if you want to run locally, you should run this backend app too.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup 🚀
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Environment variables**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Create .env file at the root directory (same as README.me) with the following variables: `REACT_APP_API_URL`, `PORT`.
+  If you want to run locally, I recommend set `REACT_APP_API_URL` as `http://192.168.1.86:3000/` (this is the backend developed for this app), and `PORT` as `3001`
 
-### `npm run eject`
+**Run locally**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- _Install dependencies_: `run npm install`
+- _Run locally_: `npm run start`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Highlitghts about the technology used in this project 📋
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- To store a global state that keep track of cart items and client information, it has implemented REDUX, using [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started).
+- It contains requests to a backend app, using _get_ and _post_ operations. For this, it uses Axios instance and [React-query](https://react-query-v3.tanstack.com/overview). React-query allows you to to manage requests easily, by providing custom hooks and performant mechanisms to fetch data, refetch, cache and manage its state.
+- To add style to components, it uses [Material UI](https://mui.com/material-ui/getting-started/overview/).
+- To static data type validation at compile time, it uses Typescript.
+- To runtime data type validation, it uses [Zod](https://zod.dev/?id=introduction), mainly focused on data returned from backend responses.
+- To build and manage form state (on client and payment method pages), it uses [useForm](https://react-hook-form.com/api/useform). It helps to manage forms easily, by providing hooks that allows you to access and set form values, validations, displaying errors, subtmitting.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Project demo images
 
-## Learn More
+Desktop version:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Index page:
+![Catalog](public/demoImages/desktop/catalog.png?raw=true "Catalog")
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To click on any product:
+
+![ProductDetails](public/demoImages/desktop/productDetails.png?raw=true "ProductDetails")
+
+When click on buy now:
+![Checkout](public/demoImages/desktop/checkout.png?raw=true "Checkout")
+
+When click on next in the previous page:
+![PaymentMethod](public/demoImages/desktop/paymentMethod.png?raw=true "PaymentMethod")
+
+When confirm payment and create a purchase order:
+![PaymentConfirmation](public/demoImages/desktop/paymentConfirmation.png?raw=true "PaymentConfirmation")
+
+Mobile:
+
+<p align="center">
+    <p>Index page: </p>
+    <img src="public/demoImages/mobile/catalog.png" width="350">
+</p>
+<p align="center">
+    <p>To click on any product:</p>
+    <img src="public/demoImages/mobile/productDetails.png" width="350">
+</p>
+<p align="center">
+    <p>When click on buy now:</p>
+    <img src="public/demoImages/mobile/checkout.png" width="350">
+</p>
+<p align="center">
+    <p>When click on next in the previous page:</p>
+    <img src="public/demoImages/mobile/paymentMethod.png" width="350">
+</p>
+<p align="center">
+    <p>When confirm payment and create a purchase order:</p>
+    <img src="public/demoImages/mobile/paymentConfirmation.png" width="350">
+</p>

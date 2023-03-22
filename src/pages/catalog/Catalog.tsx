@@ -25,7 +25,7 @@ const Catalog = () => {
             }}
           >
             {products.map((product) => (
-              <Grid xs={6} sm={4} key={product._id}>
+              <Grid xs={6} sm={4} key={product.id}>
                 <ProductCard product={product} />
               </Grid>
             ))}
