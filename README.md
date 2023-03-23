@@ -16,6 +16,7 @@ As this is a demo app, it does not contain all the expected functionallities an 
 This is part of a full-stack project, so this frontend app is connected to a backend app developed as part of personal portfolio too. So if you want to run this app locally, you should run the backend at the same time.
 
 > [Backend project with Express](https://github.com/leoBravoRain/ecommerce-backend)
+
 > [Backend project with Nest Js](https://github.com/leoBravoRain/ecommerce-backend-nest-js)
 
 ## Requisites 🔌
